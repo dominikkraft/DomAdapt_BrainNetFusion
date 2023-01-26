@@ -6,6 +6,8 @@ Before running the code, please make sure to set up a new conda environment firs
 
 `conda create --name <env> --file requirements.txt`
 
+Make sure to activate env for all analyses within this repo: `conda activate <env>`
+
 
 ## Order of Operations
 
