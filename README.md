@@ -1,6 +1,8 @@
 # DomAdapt_BrainNetFusion
 
-This repository stores code and analyses behind **preprint** 
+This repository stores code and analyses for the [preprint](https://www.medrxiv.org/content/10.1101/2023.01.26.23285055v1) entitled 
+
+> *Signatures of pubertal brain development and health revealed through domain adapted brain network fusion* 
 
 Before running the code, please make sure to set up a new conda environment first:
 
