@@ -6,7 +6,9 @@ This repository stores code and analyses for the [preprint](https://www.medrxiv.
 
 Before running the code, please make sure to set up a new conda environment first:
 
-`conda create --name <env> --file requirements.txt`
+- `conda create --name <env> python=3.7.11`
+- `conda activate <env>`
+- `pip install -r requirements.txt`
 
 Make sure to activate env for all analyses within this repo: `conda activate <env>`
 
