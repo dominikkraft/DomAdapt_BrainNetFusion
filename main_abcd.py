@@ -16,6 +16,7 @@ from utils import (
     load_abcd_mri,
     extend_demodf,
     load_mri,
+    euler_exclude,
 )
 from analyze import (
     fusion,
@@ -80,12 +81,26 @@ start_time = time.time()
 
 # load, concat data -> fusion and embedding
 pnc_area, pnc_volume = load_mri(dataset="PNC", exclude=exclude_ROIs)
+
+
+###################################################################
+# data quality follow up analysis #################################
+# excluding PNC subjects based on euler number (3xSD below mean) #
+# (un)comment the next 4 lines ####################################
+################################################################### 
+
+#euler_mask = euler_exclude(pnc_area)
+#print(euler_mask.sum())
+#pnc_area = pnc_area[~euler_mask]
+#pnc_volume = pnc_volume[~euler_mask]
+
+
 pnc_arrays = create_data_array([pnc_area, pnc_volume])
 fused_pnc, _ = fusion(pnc_arrays)
 pnc_evc, pnc_eval = diff_map_embedding(fused_pnc)
 
 # prepate features for ML framework
-features_pnc = prepare_mean_features(pnc_arrays)
+features_pnc, _ = prepare_mean_features(pnc_arrays)
 
 
 print("PNC: Done!")
@@ -128,7 +143,7 @@ for i in range(len(abcd_list)):
     abcd_evc, _ = diff_map_embedding(fused_abcd)
     embeddings_abcd.append(abcd_evc)
 
-    abcd_feats = prepare_mean_features(array_list_combat)
+    abcd_feats, _ = prepare_mean_features(array_list_combat)
     features_abcd.append(abcd_feats)
 
     demos.append(site_info)
@@ -163,7 +178,7 @@ for feat in range(1, 3):
     metrics.append(mets)
     predictions.append(preds)
 
-print("saving file workind dir")
+print("saving file in working dir")
 # prepate output dict
 output = {
     "demos": demos[1:],
@@ -171,7 +186,7 @@ output = {
     "predictions": predictions,
     "metrics": metrics,
 }
-np.save("outputdict_base_followup.npy", output)
+np.save("outputdict_base_followup_eulerexcl.npy", output)
 
 print("Finishing Pipeline ... ")
 print("--- %s minutes ---" % ((time.time() - start_time) / 60))

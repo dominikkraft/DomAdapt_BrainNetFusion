@@ -69,7 +69,7 @@ def load_abcd_mri():
     This function loads MRI data from the ABCD study and
     ------
     Input:
-    - 
+    -
     ------
     Output:
     - output_list: list containing demo, area, vol dfs for baseline_only and two timepoint (BL, T1) subjects
@@ -247,3 +247,32 @@ def site_harmonization(array_list, site_df, site_var):
         array_list_combat.append(array_combat.T)
 
     return array_list_combat
+
+
+def euler_exclude(mri_df, threshold=3):
+    """
+    This functions calculates mean euler number across hemispheres as a proxy for dataquality and
+    returns a mask indicating which participants exceed mean - std * standard deviation
+    Function is used for PNC data!
+    -----
+    Input
+    - mri_df: a dataframe containing MRI subjects assuring same subjects + ordering
+    - threshold: indicates {} x SD threshold, default = 3SD, decrease for stricter threshold
+    ----
+    Output
+    - mask: boolean mask for dataframe indicating which subjects exceed threshold, pd.Series
+    """
+
+    file = "../PNC/allEuler.csv"
+    df = pd.read_csv(file)
+
+    df["avg_euler"] = (df.euler_lh + df.euler_rh) / 2
+    df.sort_values(by="subject", inplace=True)
+
+    assert list(df.subject) == list(
+        mri_df.subjectkey
+    ), "subjects do not match! check again"
+
+    mask = df["avg_euler"] < df["avg_euler"].mean() - threshold * df["avg_euler"].std()
+
+    return mask
