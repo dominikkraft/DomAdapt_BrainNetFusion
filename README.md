@@ -19,3 +19,4 @@ Make sure to activate env for all analyses within this repo: `conda activate <en
 - the remaining `.py` files store functions used in `main_abcd.py` and `main_hbn.py`
 - association analyses with pubertal and mental health measures were performed in the `ABCD_*.ipynb and HBN_*.ipynb` files.
 - `Xemb.ipynb` contains code that calculates feature - embedding correlations for brain map vizualisations and spin permutation testing
+- `*.R` uses output from `Xemb.ipynb` and generates brain maps for Suppl. Materials (ggseg 1.6.5 running in R 4.2.3)
