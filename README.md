@@ -18,4 +18,4 @@ Make sure to activate env for all analyses within this repo: `conda activate <en
 - `main_abcd.py` and `main_hbn.py` are the backbone of the analyes, performing all steps from data loading to machine learning with domain adaptation
 - the remaining `.py` files store functions used in `main_abcd.py` and `main_hbn.py`
 - association analyses with pubertal and mental health measures were performed in the `ABCD_*.ipynb and HBN_*.ipynb` files.
-- Xemb.ipynb contains code that calculates feature - embedding correlations for brain map vizualisations and spin permutation testing
+- `Xemb.ipynb` contains code that calculates feature - embedding correlations for brain map vizualisations and spin permutation testing
