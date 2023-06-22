@@ -84,7 +84,7 @@ def prepare_mean_features(array_list):
 
     features = np.hstack(tuple(temp_list))
 
-    return features
+    return features, temp_list
 
 
 def supervised_domain_adapt(

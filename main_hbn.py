@@ -81,7 +81,7 @@ fused_pnc, _ = fusion(pnc_arrays)
 pnc_evc, pnc_eval = diff_map_embedding(fused_pnc)
 
 # prepate features for ML framework
-features_pnc = prepare_mean_features(pnc_arrays)
+features_pnc, _ = prepare_mean_features(pnc_arrays)
 
 
 print("PNC: Done!")
@@ -192,7 +192,7 @@ for i in range(len(hbn_list)):
     hbn_evc, _ = diff_map_embedding(fused_hbn)
     embeddings_hbn.append(hbn_evc)
 
-    hbn_feats = prepare_mean_features(array_list_combat)
+    hbn_feats, _ = prepare_mean_features(array_list_combat)
     features_hbn.append(hbn_feats)
 
     demograph.append(site_info)
