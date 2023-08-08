@@ -20,3 +20,8 @@ Make sure to activate env for all analyses within this repo: `conda activate <en
 - association analyses with pubertal and mental health measures were performed in the `ABCD_*.ipynb and HBN_*.ipynb` files.
 - `Xemb.ipynb` contains code that calculates feature - embedding correlations for brain map vizualisations and spin permutation testing
 - `*.R` uses output from `Xemb.ipynb` and generates brain maps for Suppl. Materials (ggseg 1.6.5 running in R 4.2.3)
+
+
+
+[![DOI](https://zenodo.org/badge/591243629.svg)](https://zenodo.org/badge/latestdoi/591243629)
+
